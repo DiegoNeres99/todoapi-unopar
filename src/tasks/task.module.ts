@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
-import { TaskService } from './shared/tasks.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TaskSchema } from './schema/task.schema';
+import { Task, TaskSchema } from './schema/task.schema';
+import { TaskService } from './shared/tasks.service';
 import { TaskController } from './task.controller';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Task', schema: TaskSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: Task.name, schema: TaskSchema }]),
+  ],
   controllers: [TaskController],
   providers: [TaskService],
 })
